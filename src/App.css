@@ -7,3 +7,7 @@ h1 , h2, h3 {
     padding-top: 0 !important;
     padding: 50px ;
 }
+
+.search {
+    padding: 0 40px  40px;
+}
