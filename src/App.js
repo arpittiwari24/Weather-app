@@ -28,9 +28,11 @@ const App = () => {
     {/* search city */}
 
     <div className='search'>
+      <div>
       <input className='form-control-lg' type='text' placeholder='Search your city' onChange={(e)=> setSearch(e.target.value)}/>
       <button className='btn btn-info btn-lg' onClick={pressed}>Search</button>
-      <Weather  className="weather"/>
+      </div>
+      <Weather />
     </div>
 
     {
@@ -38,11 +40,11 @@ const App = () => {
         <div>
              {/* Display city name */}
     
-        <h2 className='text-warning'><u>Location:</u>  {weather.name}</h2>
+        <h2 className='text-warning'>Location:  {weather.name}</h2>
     
         {/* Display temperature and condition */}
-        <h3 className='text-warning'><u>Temperature:</u>   {weather.main.temp}ºC</h3>
-        <h3 className='text-warning'><u>Weather:</u>   {weather.weather[0].main}</h3>
+        <h3 className='text-warning'>Temperature:   {weather.main.temp}ºC</h3>
+        <h3 className='text-warning'>Weather:   {weather.weather[0].main}</h3>
         </div>
         ) : (
           <p></p>
