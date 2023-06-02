@@ -1,5 +1,7 @@
 import {  useState } from 'react';
 import './App.css';
+import Weather from './Weather';
+
 
 const api = {
   key: "7d78d97e2ef44855b22b026d72f535da",
@@ -11,7 +13,7 @@ const App = () => {
   const [weather,setWeather] = useState({})
 
   const pressed = () => {
-    fetch(`${api.base}weather?q=${search}&unit=metric&appid=${api.key}`).then(
+    fetch(`${api.base}weather?q=${search}&appid=${api.key}&units=metric`).then(
       (res) => res.json()
     ).then(
       (result) => setWeather(result)
@@ -28,23 +30,26 @@ const App = () => {
     <div className='search'>
       <input className='form-control-lg' type='text' placeholder='Search your city' onChange={(e)=> setSearch(e.target.value)}/>
       <button className='btn btn-info btn-lg' onClick={pressed}>Search</button>
+      <Weather  className="weather"/>
     </div>
 
-    { typeof weather.main !== "undefined" ? (
-    <div>
-         {/* Display city name */}
+    {
+       typeof weather.main !== "undefined" ? (
+        <div>
+             {/* Display city name */}
+    
+        <h2 className='text-warning'><u>Location:</u>  {weather.name}</h2>
+    
+        {/* Display temperature and condition */}
+        <h3 className='text-warning'><u>Temperature:</u>   {weather.main.temp}ºC</h3>
+        <h3 className='text-warning'><u>Weather:</u>   {weather.weather[0].main}</h3>
+        </div>
+        ) : (
+          <p></p>
+        )
+        }
+    
 
-    <h2 className='text-warning'><u>CITY:  </u>{weather.name}</h2>
-
-    {/* Display temperature and condition */}
-    <h3 className='text-warning'><u>TEMP:  </u>  {weather.main.temp}ºF</h3>
-    <h3 className='text-warning'><u>CONDITION:  </u> {weather.weather[0].main}</h3>
-    </div>
-    ) : (
-      <p></p>
-    )
-
-    }
     </div>
     </div>
     
